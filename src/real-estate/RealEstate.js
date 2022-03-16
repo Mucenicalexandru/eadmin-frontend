@@ -1,5 +1,4 @@
-import React, {useContext, useState} from 'react';
-import {UserContext} from "../context/UserContext";
+import React, {useState} from 'react';
 import {floors} from "../util/numbers";
 import {rooms} from "../util/numbers";
 

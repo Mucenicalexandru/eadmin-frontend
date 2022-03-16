@@ -48,13 +48,13 @@ function Navbar(props) {
 
 
                     <div>
-                        <img className="card " src={`/images/romania.png`} alt={"Smart City Picture"} style={{"width" : "38px", "height" : "28px","borderRadius": "10px", "marginRight" : "5px", "marginLeft" : "130px", "marginTop" : "7px", "cursor" : "pointer"}} onClick={(e) => {
+                        <img className="card " src={`/images/romania.png`} alt={"Smart City"} style={{"width" : "38px", "height" : "28px","borderRadius": "10px", "marginRight" : "5px", "marginLeft" : "130px", "marginTop" : "7px", "cursor" : "pointer"}} onClick={(e) => {
                             e.preventDefault();
                             setLanguage("Romanian");
                         }}/>
                     </div>
                     <div>
-                        <img className="card " src={`/images/english.jpeg`} alt={"Smart City Picture"} style={{"width" : "38px", "height" : "28px","borderRadius": "10px", "marginTop" : "7px", "cursor" : "pointer"}} onClick={(e) => {
+                        <img className="card " src={`/images/english.jpeg`} alt={"Smart City"} style={{"width" : "38px", "height" : "28px","borderRadius": "10px", "marginTop" : "7px", "cursor" : "pointer"}} onClick={(e) => {
                             e.preventDefault();
                             setLanguage("English");
                         }}/>

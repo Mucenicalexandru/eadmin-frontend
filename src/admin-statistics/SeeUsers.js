@@ -95,6 +95,7 @@ function SeeUsers(props) {
                     </tr>
                     </thead>
                     <tbody>
+                    {/* eslint-disable-next-line array-callback-return */}
             {userList.map((user, index) => {
                 if(user.roles.length === 1){
                     return <tr key={index}>
