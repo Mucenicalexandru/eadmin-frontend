@@ -16,7 +16,7 @@ function Login(props) {
             .then((response) => {
                 if (response.status === 200){
                     localStorage.setItem('token', response.data.token);
-                    window.location.href = 'http://localhost:3000/';
+                    window.location.href = 'https://e-administration.azurewebsites.net/';
                 }
             })
             .catch((err) => {
