@@ -6,7 +6,7 @@ import SaveButton from "../buttons/SaveButton";
 function AddBuilding(props) {
     let groupId = props.location.groupId;
 
-    const [setGroup] = useState({});
+    const [group, setGroup] = useState({});
     const [redirect, setRedirect] = useState(false);
     const [building, setBuilding] = useState({
         street : "",
@@ -32,7 +32,7 @@ function AddBuilding(props) {
                 setBuilding(s);
                 setGroup(response.data);
             })
-    }, [groupId, building, setGroup])
+    }, [groupId, building, group])
 
     const handleSubmit = (e) => {
         e.preventDefault();
