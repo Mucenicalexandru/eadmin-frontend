@@ -12,7 +12,7 @@ function Logout(props) {
         e.preventDefault();
         localStorage.clear();
         console.log("LOGOUT")
-        window.location.href = "https://e-administration.azurewebsites.net/";
+        window.location.href = "http://localhost:3000/";
     }}>
         <i className="fas fa-sign-out-alt"  style={{"color" : "white", "fontSize" : "25px"}}> </i>
     </Link>

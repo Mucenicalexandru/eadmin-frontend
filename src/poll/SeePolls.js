@@ -17,7 +17,7 @@ function SeePolls(props) {
     // })
 
     useEffect(() => {
-        axios.get(`https://eadmin-poll.azurewebsites.net/poll/all-by-building-with-total-votes/${value.buildingId}`, {
+        axios.get(`/poll/all-by-building-with-total-votes/${value.buildingId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token'),
             }
@@ -116,7 +116,7 @@ function SeePolls(props) {
                                     :
                                     <button id={response.poll.pollId}  className="btn btn-outline-danger btn-sm" onClick={(e) => {
                                         e.preventDefault();
-                                        axios.put(`https://eadmin-poll.azurewebsites.net/poll/close/${response.poll.pollId}`, {
+                                        axios.put(`/poll/close/${response.poll.pollId}`, {
                                             headers: {
                                                 Authorization: 'Bearer ' + localStorage.getItem('token'),
                                             }

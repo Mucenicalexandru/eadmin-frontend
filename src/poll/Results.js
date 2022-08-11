@@ -14,7 +14,7 @@ function Results(props) {
     const [answers, setAnswers] = useState({});
 
     useEffect(() => {
-        axios.get(`https://eadmin-poll.azurewebsites.net/poll/results/${pollId}`, {
+        axios.get(`/poll/results/${pollId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token'),
             }
@@ -23,7 +23,7 @@ function Results(props) {
                 console.log(response.data);
                 setAnswers(response.data);
             })
-        axios.get(`https://eadmin-poll.azurewebsites.net/poll/${pollId}`, {
+        axios.get(`/poll/${pollId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token'),
             }

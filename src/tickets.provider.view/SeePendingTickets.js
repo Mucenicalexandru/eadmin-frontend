@@ -8,7 +8,7 @@ function SeePendingTickets(props) {
 
     const value = useContext(UserContext);
     const [responseList, setResponseList] = useState([]);
-
+    console.log(value.userId)
     const [ticketInModal, setTicketInModal] = useState({
         details : "",
         actionTaken : "",
@@ -26,13 +26,17 @@ function SeePendingTickets(props) {
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
-        axios.get(`https://eadmin-ticket.azurewebsites.net/ticket/${value.department}/${value.town}/with-offers`, {
+        console.log(value.department)
+        console.log(value.town)
+        axios.get(`/ticket/${value.department}/${value.town}/with-offers`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
             })
             .then((response) => {
+                console.log(response.data);
                 setResponseList(response.data);
+                console.log(response.data);
             })
     }, [value, redirect])
 
@@ -63,7 +67,7 @@ function SeePendingTickets(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`https://eadmin-pendingserviceoffer.azurewebsites.net/pending-offer/add`, offer, {
+        axios.post(`/pending-offer/add`, offer, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -72,6 +76,8 @@ function SeePendingTickets(props) {
                 setRedirect(!redirect);
             })
     }
+
+
 
     return (
         <>
@@ -86,7 +92,7 @@ function SeePendingTickets(props) {
                             <th>Open date</th>
                             <th>Status</th>
                             <th>Type</th>
-                            <th>Price</th>
+                            <th>Estimated Price</th>
                             <th>Make offer</th>
                             <th>Location</th>
                         </tr>
@@ -101,7 +107,7 @@ function SeePendingTickets(props) {
                                     const s = {...ticketInModal}
                                     s.details = response.ticket.details
                                     s.actionTaken = response.ticket.actionTaken
-                                    // s.user = ticket.user;
+                                    s.user = response.ticket.user;
                                     setTicketInModal(s);
                                     setIsOpen(true);
                                 }}><span className={"blue-underline"}>{response.ticket.title}</span></td>
@@ -110,11 +116,11 @@ function SeePendingTickets(props) {
                                 <td className={"ticket-type"}>{response.ticket.type}</td>
 
 
-                                {response.providersWhoAlreadySubmittedTheirOffer.includes(value.userId) ?
+                                {response.pendingOffer.includes(value.userId) ?
                                         <td> </td>
                                         :
                                         <td className="provider-ticket-price-offer">
-                                            <input style={{"width" : "150px"}} type="number" placeholder="Estimate price" onChange={(e) => {
+                                            <input style={{"width" : "150px"}} type="number" placeholder="Estimated price" onChange={(e) => {
                                                 const s = {...offer};
                                                 s.serviceProviderPrice = +e.target.value;
                                                 s.ticketId = response.ticket.ticketId;
@@ -123,35 +129,46 @@ function SeePendingTickets(props) {
                                             }}/></td>
                                 }
 
-                                {response.providersWhoAlreadySubmittedTheirOffer.length > 0 ?
-                                    response.providersWhoAlreadySubmittedTheirOffer.includes(value.userId) ?
-                                        <td key={index}>
-                                            <i>Already submitted</i>
-                                        </td>
-                                        :
-                                        <td className="ticket-make-offer">
-                                            <button type="submit" className="btn btn-outline-success btn-sm">Submit</button>
-                                        </td>
+                                {/*{response.providersWhoAlreadySubmittedTheirOffer.length > 0 ?*/}
+                                {/*    response.providersWhoAlreadySubmittedTheirOffer.includes(value.userId) ?*/}
+                                {/*        <td key={index}>*/}
+                                {/*            <i>Already submitted</i>*/}
+                                {/*        </td>*/}
+                                {/*        :*/}
+                                {/*        <td className="ticket-make-offer">*/}
+                                {/*            <button type="submit" className="btn btn-outline-success btn-sm">Submit</button>*/}
+                                {/*        </td>*/}
 
 
-
-
-                                    // response.pendingOffer.map((offer, index) =>{
-                                    //     if(offer.serviceProviderUserId === value.userId){
-                                    //         return  <td key={index}>
-                                    //             <i>Already submitted</i>
-                                    //         </td>
-                                    //     }else{
-                                    //         return  <div>
-                                    //             <td className="ticket-make-offer">
-                                    //                 <button type="submit" className="btn btn-outline-success btn-sm">Submit</button>
-                                    //             </td>
-                                    //         </div>
-                                    //     }
-                                    // })
+                                {response.pendingOffer.length > 0 ?
+                                    response.pendingOffer.map((offer, index) =>{
+                                        if(offer.serviceProviderUserId === value.userId){
+                                            return <td className="ticket-make-offer"><i>Already submitted</i></td>
+                                        }
+                                    })
                                     :
-                                    <td className="ticket-make-offer"><button type="submit" className="btn btn-outline-success btn-sm">Submit</button></td>
+                                    <td key={index}>
+                                        <td className="ticket-make-offer"><button type="submit" className="btn btn-outline-success btn-sm">Submit</button></td>
+                                    </td>
                                 }
+
+                                {/*<td key={index}>*/}
+                                {/*    <td className="ticket-make-offer"><button type="submit" className="btn btn-outline-success btn-sm">Submit</button></td>*/}
+                                {/*</td>*/}
+                                    {/*{response.pendingOffer.map((offer, index) =>{*/}
+                                    {/*     if(offer.serviceProviderUserId === value.userId){*/}
+                                    {/*         return  <td key={index}>*/}
+                                    {/*             <i>Already submitted</i>*/}
+                                    {/*         </td>*/}
+                                    {/*     }else{*/}
+                                    {/*          <div>*/}
+                                    {/*             <td className="ticket-make-offer"><button type="submit" className="btn btn-outline-success btn-sm">Submit</button></td>*/}
+                                    {/*         </div>*/}
+                                    {/*     }*/}
+                                    {/* })}*/}
+
+
+
                                 <td>
                                     <Link to={{
                                         pathname : "/see-location",
@@ -184,7 +201,7 @@ function SeePendingTickets(props) {
                         Action taken : <p><i>{ticketInModal.actionTaken}</i></p>
                     </div>
 
-                    <div className={"card margin-top-15"}>{"User : " + ticketInModal.user.firstName + " " + ticketInModal.user.lastName + " - " + ticketInModal.user.phone}</div>
+                    {/*<div className={"card margin-top-15"}>{"User : " + ticketInModal.user.firstName + " " + ticketInModal.user.lastName + " - " + ticketInModal.user.phone}</div>*/}
 
 
                     <button className="btn btn-outline-dark margin-left-5 float-right margin-top-15" onClick={closeModal}>close</button>

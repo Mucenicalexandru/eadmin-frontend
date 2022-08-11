@@ -19,7 +19,7 @@ function AddBuilding(props) {
     })
 
     useEffect(() =>{
-        axios.get(`https://eadmin-group.azurewebsites.net/group/get-by-id/${groupId}`, {
+        axios.get(`/group/get-by-id/${groupId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -32,11 +32,11 @@ function AddBuilding(props) {
                 setBuilding(s);
                 setGroup(response.data);
             })
-    }, [groupId, building, group])
+    }, [groupId])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`https://eadmin-building.azurewebsites.net/building/add`, building, {
+        axios.post(`/building/add`, building, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

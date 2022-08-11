@@ -11,7 +11,7 @@ function Groups(props) {
     const [showAll, setShowAll] = useState(false);
 
     useEffect(() => {
-        axios.get(`https://eadmin-group.azurewebsites.net/group/get-all`, {
+        axios.get(`/group/get-all`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -22,7 +22,7 @@ function Groups(props) {
     }, [value, showAll])
 
     const handleTownChange = (e) => {
-        axios.get(`https://eadmin-group.azurewebsites.net/group/get-by-town/${e.target.value}`, {
+        axios.get(`/group/get-by-town/${e.target.value}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -45,7 +45,7 @@ function Groups(props) {
             setShowAll(true)
         }else{
             console.log("with letters")
-            axios.get(`https://eadmin-group.azurewebsites.net/group/search/${search}`, {
+            axios.get(`/group/search/${search}`, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }

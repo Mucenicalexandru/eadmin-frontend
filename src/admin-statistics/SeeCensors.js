@@ -8,7 +8,7 @@ function SeeCensors(props) {
     const [censorList, setCensorList] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://eadmin-user.azurewebsites.net/user/all-by-role/CENSOR`, {
+        axios.get(`/user/all-by-role/CENSOR`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

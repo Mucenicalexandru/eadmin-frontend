@@ -60,7 +60,7 @@ function PendingRequestsList(props) {
 
 
     useEffect(() => {
-        axios.get(`https://eadmin-user.azurewebsites.net/user/pending/${groupId}`, {
+        axios.get(`/user/pending/${groupId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token'),
             }
@@ -69,7 +69,7 @@ function PendingRequestsList(props) {
                 setPendingList(response.data);
             })
 
-        axios.get(`https://eadmin-group.azurewebsites.net/group/get-by-id/${groupId}`, {
+        axios.get(`/group/get-by-id/${groupId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token'),
             }
@@ -138,7 +138,7 @@ function PendingRequestsList(props) {
                 <button className="btn btn-outline-success" onClick={e => {
                     e.preventDefault();
 
-                    axios.put(`https://eadmin-user.azurewebsites.net/user/accept-request/${userInModal.userId}`, {
+                    axios.put(`/user/accept-request/${userInModal.userId}`, {
                         headers: {
                             Authorization: 'Bearer ' + localStorage.getItem('token')
                         }
@@ -155,7 +155,7 @@ function PendingRequestsList(props) {
 
                 <button className="btn btn-outline-danger margin-left-5" onClick={e => {
                     e.preventDefault();
-                    axios.put(`https://eadmin-user.azurewebsites.net/user/reject-request/${userInModal.userId}`, {
+                    axios.put(`/user/reject-request/${userInModal.userId}`, {
                         headers: {
                             Authorization: 'Bearer ' + localStorage.getItem('token'),
                         }

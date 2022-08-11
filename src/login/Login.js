@@ -12,11 +12,11 @@ function Login(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`https://eadmin-user.azurewebsites.net/user/login`, user)
+        axios.post(`/user/login`, user)
             .then((response) => {
                 if (response.status === 200){
                     localStorage.setItem('token', response.data.token);
-                    window.location.href = 'https://e-administration.azurewebsites.net/';
+                    window.location.href = 'http://localhost:3000/';
                 }
             })
             .catch((err) => {

@@ -9,7 +9,7 @@ function SeePresidents(props) {
 
 
     useEffect(() => {
-        axios.get(`https://eadmin-user.azurewebsites.net/user/all-by-role/PRESIDENT`, {
+        axios.get(`/user/all-by-role/PRESIDENT`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

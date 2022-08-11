@@ -21,7 +21,7 @@ function AddPresident(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        axios.post(`https://eadmin-user.azurewebsites.net/user/add-president`, president, {
+        axios.post(`/user/add-president`, president, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

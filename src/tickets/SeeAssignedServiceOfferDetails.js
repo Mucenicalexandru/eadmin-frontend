@@ -13,7 +13,7 @@ function SeeAssignedServiceOfferDetails(props) {
     const [serviceProvider, setServiceProvider] = useState({});
 
     useEffect(() => {
-        axios.get(`https://eadmin-user.azurewebsites.net/user/provider-with-reviews/${providerId}`, {
+        axios.get(`/user/provider-with-reviews/${providerId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

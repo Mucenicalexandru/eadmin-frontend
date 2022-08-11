@@ -25,7 +25,7 @@ function EditAdministrator(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.put(`https://eadmin-user.azurewebsites.net/user/edit/${userId}`, administrator, {
+        axios.put(`/user/edit/${userId}`, administrator, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

@@ -19,7 +19,7 @@ function AddAdministrator(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`https://eadmin-user.azurewebsites.net/user/add-administrator`, administrator, {
+        axios.post(`/user/add-administrator`, administrator, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

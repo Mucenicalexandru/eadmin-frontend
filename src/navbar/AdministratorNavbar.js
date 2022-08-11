@@ -12,7 +12,7 @@ function AdministratorNavbar(props) {
 
     useEffect(() => {
         value && value.roles.includes("ADMINISTRATOR") &&
-        axios.get(`https://eadmin-group.azurewebsites.net/group/get-by-id/${value.groupId}`, {
+        axios.get(`/group/get-by-id/${value.groupId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token'),
             }
@@ -22,7 +22,7 @@ function AdministratorNavbar(props) {
             })
 
         value &&
-        axios.get(`https://eadmin-ticket.azurewebsites.net/ticket/all-by-group-with-pending-offers/${value.groupId}/opened/Administrative`, {
+        axios.get(`/ticket/all-by-group-with-pending-offers/${value.groupId}/opened/Administrative`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

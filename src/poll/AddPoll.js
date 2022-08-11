@@ -23,7 +23,7 @@ function AddPoll(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`https://eadmin-poll.azurewebsites.net/poll/add`, poll, {
+        axios.post(`/poll/add`, poll, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token'),
             }

@@ -10,7 +10,7 @@ function Polls(props) {
     const [responseList, setResponseList] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://eadmin-poll.azurewebsites.net/poll/all-by-building-with-total-votes/${buildingId}`, {
+        axios.get(`/poll/all-by-building-with-total-votes/${buildingId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

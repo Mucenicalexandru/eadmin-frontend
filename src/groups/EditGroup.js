@@ -16,7 +16,7 @@ function EditGroup(props) {
     });
 
     useEffect(() => {
-        axios.get(`https://eadmin-group.azurewebsites.net/group/get-by-id/${groupId}`, {
+        axios.get(`/group/get-by-id/${groupId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -28,7 +28,7 @@ function EditGroup(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.put(`https://eadmin-group.azurewebsites.net/group/edit-group/${groupId}`, group, {
+        axios.put(`/group/edit-group/${groupId}`, group, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

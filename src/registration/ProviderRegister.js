@@ -35,7 +35,7 @@ function ProviderRegister(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`https://eadmin-user.azurewebsites.net/user/add-service-provider`, serviceProvider)
+        axios.post(`/user/add-service-provider`, serviceProvider)
             .then((response) => {
                 if(response.status === 202){
                     setSuccessfullyRegistered(true)

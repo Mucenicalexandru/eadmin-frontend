@@ -23,7 +23,7 @@ function EditCensor(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.put(`https://eadmin-user.azurewebsites.net/user/edit/${userId}`, censor, {
+        axios.put(`/user/edit/${userId}`, censor, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

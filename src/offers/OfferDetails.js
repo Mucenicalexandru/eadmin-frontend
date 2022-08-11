@@ -13,13 +13,14 @@ function OfferDetails(props) {
     const [userRedirect, setUserRedirect] = useState(false);
 
     useEffect(() => {
-        axios.get(`https://eadmin-ticket.azurewebsites.net/ticket/${ticketId}/with-offers`, {
+        axios.get(`/ticket/${ticketId}/with-offers`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token'),
             }
         })
             .then(response => {
                 setResponse(response.data);
+                console.log(response.data)
             })
     }, [ticketId])
 
@@ -80,7 +81,7 @@ function OfferDetails(props) {
                             <div>
                         <button type="submit" className="btn btn-outline-success float-right margin-top-25" onClick={(e) => {
                             e.preventDefault();
-                            axios.put(`https://eadmin-ticket.azurewebsites.net/ticket/accept-offer/${ticketId}`, offer, {
+                            axios.put(`/ticket/accept-offer/${ticketId}`, offer, {
                                 headers: {
                                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                                 }
@@ -88,7 +89,7 @@ function OfferDetails(props) {
                                 .then(() => {
                                     console.log("Added")
                                 })
-                            axios.delete(`https://eadmin-pendingserviceoffer.azurewebsites.net/pending-offer/all/${response.ticket.ticketId}`, {
+                            axios.delete(`/pending-offer/all/${response.ticket.ticketId}`, {
                                 headers: {
                                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                                 }
@@ -106,7 +107,7 @@ function OfferDetails(props) {
 
                         <button className="btn btn-outline-danger margin-top-25" onClick={(e) => {
                             e.preventDefault();
-                            axios.delete(`/api/reject-pending_service_offer/${offer.id}`, {
+                            axios.delete(`/pending-offer/reject-pending_service_offer/${offer.pendingServiceOfferId}`, {
                                 headers: {
                                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                                 }
@@ -126,7 +127,7 @@ function OfferDetails(props) {
                         <div>
                             <button type="submit" className="btn btn-outline-success float-right margin-top-25" onClick={(e) => {
                                 e.preventDefault();
-                                axios.put(`https://eadmin-ticket.azurewebsites.net/ticket/accept-offer/${ticketId}`, offer, {
+                                axios.put(`/ticket/accept-offer/${ticketId}`, offer, {
                                     headers: {
                                         Authorization: 'Bearer ' + localStorage.getItem('token'),
                                     }
@@ -134,7 +135,7 @@ function OfferDetails(props) {
                                     .then(() => {
                                         console.log("Added")
                                     })
-                                axios.delete(`https://eadmin-pendingserviceoffer.azurewebsites.net/pending-offer/all/${response.ticket.ticketId}`, {
+                                axios.delete(`/pending-offer/all/${response.ticket.ticketId}`, {
                                     headers: {
                                         Authorization: 'Bearer ' + localStorage.getItem('token'),
                                     }
@@ -152,7 +153,7 @@ function OfferDetails(props) {
 
                             <button className="btn btn-outline-danger margin-top-25" onClick={(e) => {
                                 e.preventDefault();
-                                axios.delete(`/api/reject-pending_service_offer/${offer.id}`, {
+                                axios.delete(`pending-offer/reject-pending_service_offer/${offer.pendingServiceOfferId}`, {
                                     headers: {
                                         Authorization: 'Bearer ' + localStorage.getItem('token'),
                                     }

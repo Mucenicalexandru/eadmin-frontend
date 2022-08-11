@@ -26,7 +26,7 @@ function AddNewTicket(props) {
     });
 
     useEffect(() => {
-        axios.get(`https://eadmin-building.azurewebsites.net/building/${value.buildingId}`, {
+        axios.get(`/building/${value.buildingId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token'),
             }
@@ -39,12 +39,12 @@ function AddNewTicket(props) {
                 setTicket(s);
                 setIsLoading(false);
             })
-    }, [isLoading, ticket, value.buildingId])
+    }, [isLoading])
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`https://eadmin-ticket.azurewebsites.net/ticket/add`, ticket, {
+        axios.post(`/ticket/add`, ticket, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token'),
             }
@@ -70,11 +70,11 @@ function AddNewTicket(props) {
                 }
 
                 {value.roles.includes("USER") &&  redirect &&
-                <Redirect to={{
-                    pathname : "/see-offers",
-                    buildingId : value.buildingId,
-                    type : type
-                }} />
+                    <Redirect to={{
+                        pathname : "/see-offers",
+                        buildingId : value.buildingId,
+                        type : type
+                    }} />
                 }
 
 
@@ -85,7 +85,7 @@ function AddNewTicket(props) {
                         <h1>Add Building Ticket</h1>
                     }
 
-{/*DEPARTMENT*/}
+                    {/*DEPARTMENT*/}
                     <div className="input-group mb-3 margin-top-25">
 
                         <select className="custom-select" id="inputGroupSelect01" required value={ticket.department} onChange={e =>{
@@ -122,7 +122,7 @@ function AddNewTicket(props) {
                             })}
                         </select>
                     </div>
-{/*TITLE*/}
+                    {/*TITLE*/}
                     <div>
                         <input className={"poll-input"} type="text" name="title" value={ticket.title} required placeholder="Title"
                                onChange={e => {
@@ -131,7 +131,7 @@ function AddNewTicket(props) {
                                    setTicket(s);
                                }}/>
                     </div>
-{/*DETAILS*/}
+                    {/*DETAILS*/}
                     <div>
                 <textarea className={"poll-input"}  name="details" value={ticket.details} required placeholder="Details"
                           onChange={e => {
@@ -140,7 +140,7 @@ function AddNewTicket(props) {
                               setTicket(s);
                           }}/>
                     </div>
-{/*ACTION TAKEN*/}
+                    {/*ACTION TAKEN*/}
                     <div>
                     <textarea className={"poll-input"}  name="actionTaken" value={ticket.actionTaken}  placeholder="Action Taken"
                               onChange={e => {
@@ -160,7 +160,7 @@ function AddNewTicket(props) {
 
                 </form>
             </div>
-                </>
+        </>
     );
 }
 

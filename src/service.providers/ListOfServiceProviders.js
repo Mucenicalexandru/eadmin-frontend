@@ -15,7 +15,7 @@ function ListOfServiceProviders() {
     const [reset, setReset] = useState(true);
 
     useEffect(() => {
-        axios.get(`https://eadmin-user.azurewebsites.net/user/all-providers-with-reviews`, {
+        axios.get(`/user/all-providers-with-reviews`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -27,7 +27,7 @@ function ListOfServiceProviders() {
 
     const handleTownChange = (e) => {
         setSelectedTown(e.target.value);
-        axios.get(`https://eadmin-user.azurewebsites.net/user/providers-by/${e.target.value}`, {
+        axios.get(`/user/providers-by/${e.target.value}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -39,7 +39,7 @@ function ListOfServiceProviders() {
 
     const handleDepartmentChange = (e) => {
 
-        axios.get(`https://eadmin-user.azurewebsites.net/user/providers-by/${selectedTown}/${e.target.value}`, {
+        axios.get(`/user/providers-by/${selectedTown}/${e.target.value}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -154,7 +154,7 @@ function ListOfServiceProviders() {
                                     {value.roles.includes("ADMIN") ?
                                         <td><button type="button" className="btn  btn-outline-danger btn-sm" onClick={(e) => {
                                         e.preventDefault();
-                                            axios.delete(`https://eadmin-user.azurewebsites.net/user/delete-by-userId/${response.user.userId}`, {
+                                            axios.delete(`/user/delete-by-userId/${response.user.userId}`, {
                                                 headers: {
                                                     Authorization: 'Bearer ' + localStorage.getItem('token')
                                                 }

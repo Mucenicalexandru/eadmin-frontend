@@ -11,7 +11,7 @@ function PendingButton() {
 
     useEffect(() => {
         value &&
-        axios.get(`https://eadmin-user.azurewebsites.net/user/pending/${value.groupId}`, {
+        axios.get(`/user/pending/${value.groupId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token'),
             }

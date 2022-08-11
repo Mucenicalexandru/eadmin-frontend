@@ -51,9 +51,10 @@ function TicketsAdministratorAndPersonalView(props) {
     const [reset, setReset] = useState(true);
     const [administrator, setAdministrator] = useState({});
 
+    console.log(type);
     useEffect(() => {
         //set the group info
-        axios.get(`https://eadmin-group.azurewebsites.net/group/get-by-id/${value.groupId}`, {
+        axios.get(`/group/get-by-id/${value.groupId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -63,7 +64,7 @@ function TicketsAdministratorAndPersonalView(props) {
             })
 
         if(type === "Administrative"){
-            axios.get(`https://eadmin-ticket.azurewebsites.net/ticket/all-by-group-with-pending-offers/${value.groupId}/${status}/${type}`, {
+            axios.get(`/ticket/all-by-group-with-pending-offers/${value.groupId}/${status}/${type}`, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
@@ -72,7 +73,7 @@ function TicketsAdministratorAndPersonalView(props) {
                     setResponseList(response.data);
                 })
         }else if(type === "Personal"){
-            axios.get(`https://eadmin-ticket.azurewebsites.net/ticket/all-by-user-with-pending-offers/${value.userId}/${status}`, {
+            axios.get(`/ticket/all-by-user-with-pending-offers/${value.userId}/${status}`, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
@@ -83,7 +84,7 @@ function TicketsAdministratorAndPersonalView(props) {
         }
 
 
-        axios.get(`https://eadmin-user.azurewebsites.net/user/${value.userId}`, {
+        axios.get(`/user/${value.userId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -239,7 +240,7 @@ function TicketsAdministratorAndPersonalView(props) {
                                 {type === "Administrative" && value.roles.includes("ADMINISTRATOR") ?
                                     <td className={"building"}><button className="btn btn-outline-dark btn-sm" onClick={(e) => {
                                         e.preventDefault();
-                                        axios.get(`https://eadmin-building.azurewebsites.net/building/building-and-president/${response.ticket.buildingId}`, {
+                                        axios.get(`/building/building-and-president/${response.ticket.buildingId}`, {
                                             headers: {
                                                 Authorization: 'Bearer ' + localStorage.getItem('token'),
                                             }
@@ -296,7 +297,7 @@ function TicketsAdministratorAndPersonalView(props) {
                                     <td className={"building"}>
                                         <button className="btn btn-outline-dark btn-sm" onClick={(e) => {
                                             e.preventDefault();
-                                            axios.get(`https://eadmin-building.azurewebsites.net/building/building-and-president/${response.ticket.buildingId}`, {
+                                            axios.get(`/building/building-and-president/${response.ticket.buildingId}`, {
                                                 headers: {
                                                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                                                 }
@@ -333,7 +334,7 @@ function TicketsAdministratorAndPersonalView(props) {
                                     <td className={"building"}>
                                         <button className="btn btn-outline-dark btn-sm" onClick={(e) => {
                                             e.preventDefault();
-                                            axios.get(`https://eadmin-building.azurewebsites.net/building/building-and-president/${response.ticket.buildingId}`, {
+                                            axios.get(`/building/building-and-president/${response.ticket.buildingId}`, {
                                                 headers: {
                                                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                                                 }
@@ -366,7 +367,7 @@ function TicketsAdministratorAndPersonalView(props) {
                                         <button className="btn btn-outline-dark btn-sm" onClick={(e) => {
                                             e.preventDefault();
                                             response.ticket && setTicketId(response.ticket.ticketId);
-                                            axios.get(`https://eadmin-user.azurewebsites.net/user/${response.ticket.assignedServiceProviderUserId}`, {
+                                            axios.get(`/user/${response.ticket.assignedServiceProviderUserId}`, {
                                                 headers: {
                                                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                                                 }
@@ -386,7 +387,7 @@ function TicketsAdministratorAndPersonalView(props) {
                                             <button className="btn btn-outline-dark btn-sm" onClick={(e) => {
                                                 e.preventDefault();
                                                 response.ticket && setTicketId(response.ticket.ticketId);
-                                                axios.get(`https://eadmin-user.azurewebsites.net/user/${response.ticket.assignedServiceProviderUserId}`, {
+                                                axios.get(`/user/${response.ticket.assignedServiceProviderUserId}`, {
                                                     headers: {
                                                         Authorization: 'Bearer ' + localStorage.getItem('token'),
                                                     }
@@ -492,7 +493,7 @@ function TicketsAdministratorAndPersonalView(props) {
                 <div className="d-flex justify-content-center margin-top-25">
                     <button className="btn btn-outline-primary margin-left-5" onClick={(e) => {
                         e.preventDefault();
-                        axios.post(`https://eadmin-review.azurewebsites.net/review/add`, review, {
+                        axios.post(`/review/add`, review, {
                             headers: {
                                 Authorization: 'Bearer ' + localStorage.getItem('token'),
                             }
@@ -502,7 +503,7 @@ function TicketsAdministratorAndPersonalView(props) {
                             });
 
 
-                        axios.put(`https://eadmin-ticket.azurewebsites.net/ticket/close/${ticketId}`, null, {
+                        axios.put(`/ticket/close/${ticketId}`, null, {
                             headers: {
                                 Authorization: 'Bearer ' + localStorage.getItem('token'),
                             }

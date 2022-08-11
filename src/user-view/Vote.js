@@ -20,7 +20,7 @@ function Vote(props) {
     })
 
     useEffect(() => {
-        axios.get(`https://eadmin-poll.azurewebsites.net/poll/${pollId}`, {
+        axios.get(`/poll/${pollId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -114,7 +114,7 @@ function Vote(props) {
                         <div className="d-flex justify-content-center">
                             <button type="submit" className="btn btn-outline-success btn-sm margin-top-25" onClick={(e) => {
                                 e.preventDefault();
-                                axios.post(`https://eadmin-vote.azurewebsites.net/vote/`, userVote, {
+                                axios.post(`/vote/`, userVote, {
                                     headers: {
                                         Authorization: 'Bearer ' + localStorage.getItem('token')
                                     }

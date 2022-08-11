@@ -11,7 +11,7 @@ function SeeBuildings(props) {
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
-        axios.get(`https://eadmin-building.azurewebsites.net/building/buildings-and-presidents/${groupId}`, {
+        axios.get(`/building/buildings-and-presidents/${groupId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -148,7 +148,7 @@ function SeeBuildings(props) {
 
                             {value && value.roles.includes("ADMIN") &&
                             <button className="btn btn-outline-danger float-right" onClick={() => {
-                                axios.delete(`https://eadmin-building.azurewebsites.net/building/delete-by-buildingId/${building.building.buildingId}`, {
+                                axios.delete(`/building/delete-by-buildingId/${building.building.buildingId}`, {
                                     headers: {
                                         Authorization: 'Bearer ' + localStorage.getItem('token')
                                     }

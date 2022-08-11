@@ -9,7 +9,7 @@ function MyBuilding(props) {
     const [response, setResponse] = useState({});
 
     useEffect(() => {
-        axios.get(`https://eadmin-building.azurewebsites.net/building/with-president-and-poll-and-tickets/${value.buildingId}`, {
+        axios.get(`/building/with-president-and-poll-and-tickets/${value.buildingId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

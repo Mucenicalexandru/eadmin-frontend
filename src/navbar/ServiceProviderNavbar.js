@@ -12,7 +12,7 @@ function ServiceProviderNavbar(props) {
 
     useEffect(() => {
         value &&
-        axios.get(`https://eadmin-ticket.azurewebsites.net/ticket/assigned-service-provider/${value.userId}/${status}`, {
+        axios.get(`/ticket/assigned-service-provider/${value.userId}/${status}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -22,7 +22,7 @@ function ServiceProviderNavbar(props) {
                 setTotalWonTickets(response.data.length);
             })
         value &&
-        axios.get(`https://eadmin-ticket.azurewebsites.net/ticket/${value.department}/${value.town}`, {
+        axios.get(`/ticket/${value.department}/${value.town}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

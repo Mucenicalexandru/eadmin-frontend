@@ -10,7 +10,7 @@ function SeeUsers(props) {
     const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
-        axios.get(`https://eadmin-user.azurewebsites.net/user/all-by-role/USER`, {
+        axios.get(`/user/all-by-role/USER`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -22,7 +22,7 @@ function SeeUsers(props) {
     }, [isLoading, refresh])
 
     const handleTownChange = (e) => {
-        axios.get(`https://eadmin-user.azurewebsites.net/user/all-by-town/${e.target.value}`, {
+        axios.get(`/user/all-by-town/${e.target.value}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -34,7 +34,7 @@ function SeeUsers(props) {
 
     const resetSearch = (e) => {
         e.preventDefault();
-        axios.get(`https://eadmin-user.azurewebsites.net/user/all`, {
+        axios.get(`/user/all`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

@@ -18,7 +18,7 @@ function ReviewDetails(props) {
 
 
     useEffect(() => {
-        axios.get(`https://eadmin-user.azurewebsites.net/user/provider-with-reviews/${providerId}`, {
+        axios.get(`/user/provider-with-reviews/${providerId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -27,7 +27,7 @@ function ReviewDetails(props) {
                 setServiceProvider(response.data);
                 setIsLoading(true);
             })
-        axios.get(`https://eadmin-review.azurewebsites.net/review/by-provider/${providerId}`, {
+        axios.get(`/review/by-provider/${providerId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

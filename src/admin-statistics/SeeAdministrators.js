@@ -8,7 +8,7 @@ function SeeAdministrators(props) {
     const [administratorsList, setAdministratorsList] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://eadmin-user.azurewebsites.net/user/all-by-role/ADMINISTRATOR`, {
+        axios.get(`/user/all-by-role/ADMINISTRATOR`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

@@ -22,7 +22,7 @@ function AddGroup(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`https://eadmin-group.azurewebsites.net/group/add`, group, {
+        axios.post(`/group/add`, group, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

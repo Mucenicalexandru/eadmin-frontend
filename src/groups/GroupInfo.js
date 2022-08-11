@@ -13,7 +13,7 @@ function GroupInfo(props) {
 
 
     useEffect(() => {
-        axios.get(`https://eadmin-group.azurewebsites.net/group/group-administrator-censor/${groupId}`, {
+        axios.get(`/group/group-administrator-censor/${groupId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -28,7 +28,7 @@ function GroupInfo(props) {
     const deleteGroup = (e) => {
         e.preventDefault();
         console.log(groupId)
-        axios.delete(`https://eadmin-group.azurewebsites.net/group/delete-by-id/${groupId}`, {
+        axios.delete(`/group/delete-by-id/${groupId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

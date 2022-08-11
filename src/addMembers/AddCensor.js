@@ -18,7 +18,7 @@ function AddCensor(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`https://eadmin-user.azurewebsites.net/user/add-censor`, censor, {
+        axios.post(`/user/add-censor`, censor, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

@@ -25,7 +25,7 @@ function UserRegister(props) {
     });
 
     const [groupId, setGroupId] = useState("");
-    const [setBuildingId] = useState("");
+    const [buildingId, setBuildingId] = useState("");
     const [groupList, setGroupList] = useState([]);
     const [buildingList, setBuildingList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -50,6 +50,7 @@ function UserRegister(props) {
     }
 
     const handleBuildingChange = (e) => {
+        console.log(e.target.value)
         setBuildingId(e.target.value);
         const s = {...userToAdd};
         s.buildingId = e.target.value;
@@ -57,7 +58,7 @@ function UserRegister(props) {
     }
 
     useEffect(() => {
-        axios.get(`https://eadmin-group.azurewebsites.net/group/get-all`, {
+        axios.get(`/group/get-all`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -69,7 +70,7 @@ function UserRegister(props) {
     }, [isLoading])
 
     useEffect(() =>{
-        axios.get(`https://eadmin-building.azurewebsites.net/building/by-groupId/${groupId}`, {
+        axios.get(`/building/by-groupId/${groupId}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -81,7 +82,7 @@ function UserRegister(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`https://eadmin-user.azurewebsites.net/user/`, userToAdd, {
+        axios.post(`/user/`, userToAdd, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
