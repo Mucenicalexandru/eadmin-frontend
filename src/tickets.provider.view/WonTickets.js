@@ -21,7 +21,6 @@ function WonTickets(props) {
             })
     }, [value, status])
 
-
     return (
         <>
             <h1 className="d-flex justify-content-center">My Tickets</h1>
