@@ -11,8 +11,6 @@ function WonTickets(props) {
     const [buttonVisibility, setButtonVisibility] = useState(true);
 
     useEffect(() => {
-        console.log(value.userId)
-        console.log(status)
         axios.get(`/ticket/assigned-service-provider/${value.userId}/${status}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
