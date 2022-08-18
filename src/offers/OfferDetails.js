@@ -65,10 +65,10 @@ function OfferDetails(props) {
                         {/*    <p>*/}
                         {/*        <Link to={{*/}
                         {/*            pathname : "/review-details",*/}
-                        {/*            providerId : offer.serviceProvider.id}}>{offer.serviceProvider.reviews.length} reviews</Link>*/}
+                        {/*            providerId : 4}}>5 reviews</Link>*/}
                         {/*    </p>*/}
-                        {/*    :*/}
-                        {/*    <p>No reviews</p>*/}
+                            {/*:*/}
+                            {/*<p>No reviews</p>*/}
                         {/*}*/}
                         <br/>
                         <p><i className="fas fa-phone"> </i> {offer.serviceProviderPhone}</p>

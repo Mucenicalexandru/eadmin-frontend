@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {departments} from "../util/departments";
 import {cities} from "../util/cities";
 import {Link, Redirect} from "react-router-dom";
@@ -7,7 +7,9 @@ import axios from "axios";
 function ProviderRegister(props) {
 
     const [successfullyRegistered, setSuccessfullyRegistered] = useState(false);
+    const test = true;
     const [emailExist, setEmailExist] = useState(false);
+    const [departmentList, setDepartmentList] = useState([]);
     const [serviceProvider, setServiceProvider] = useState({
         firstName : "",
         lastName : "",
@@ -20,6 +22,18 @@ function ProviderRegister(props) {
         department : "",
         password : ""
     });
+
+    useEffect(() => {
+        axios.get(`/user/departments`, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+            .then(response => {
+                setDepartmentList(response.data);
+                console.log(response.data)
+            })
+    }, [test])
 
     const handleTownChange = (e) => {
         const s = {...serviceProvider};
@@ -76,8 +90,8 @@ function ProviderRegister(props) {
                             setServiceProvider(s);
                         }}>
                             <option value="" selected>Department</option>
-                            {departments.map((department, index) => {
-                                return <option key={index} value={department}>{department}</option>
+                            {departmentList && departmentList.map((department, index) => {
+                                return <option key={index} value={department.name}>{department.name}</option>
                             })}
                         </select>
                     </div>

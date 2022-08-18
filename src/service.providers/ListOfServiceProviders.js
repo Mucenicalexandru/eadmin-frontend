@@ -5,14 +5,20 @@ import {UserContext} from "../context/UserContext";
 import {departments} from "../util/departments";
 import {cities} from "../util/cities";
 import {AverageStarRating} from "../util/AverageStarRating";
+import SaveButton from "../buttons/SaveButton";
 
 function ListOfServiceProviders() {
 
     const value = useContext(UserContext);
     const [responseList, setResponseList] = useState();
     const [dropdownHidden, setDropdownHidden] = useState(true);
+    const [departmentHidden, setDepartmentHidden] = useState(true);
+
     const [selectedTown, setSelectedTown] = useState("");
     const [reset, setReset] = useState(true);
+    const [department, setDepartment] = useState({
+        name : ""
+    })
 
     useEffect(() => {
         axios.get(`/user/all-providers-with-reviews`, {
@@ -49,6 +55,18 @@ function ListOfServiceProviders() {
             })
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("test")
+        // axios.post(`/user/department/add`, department, {
+        //     headers: {
+        //         Authorization: 'Bearer ' + localStorage.getItem('token')
+        //     }
+        // })
+        //     .then(() => {
+        //         setRedirect(true);
+        //     })
+    }
 
     return (
         <>
@@ -62,6 +80,30 @@ function ListOfServiceProviders() {
                             setDropdownHidden(!dropdownHidden);
                         }}>Advanced Search</button>
                     </div>
+                    {value && value.roles.includes("ADMIN") ?
+                            <div className="d-flex justify-content-center margin-top-25">
+                                <button type="button" className="btn btn-outline-info" onClick={(e) => {
+                                    e.preventDefault();
+                                    setDepartmentHidden(!departmentHidden);
+                                }}>Add Department
+                                </button>
+                            </div>
+                        :
+                        <div></div>
+                    }
+
+                    <form onSubmit={handleSubmit}>
+                        <div className="d-flex justify-content-center margin-top-25">
+                            <div className={"dropdown-width"} hidden={departmentHidden}>
+                                <input type="text" name="Department Name" value={department.name} onChange={e => {
+                                    const s = {...department};
+                                    s.department = e.target.value;
+                                    setDepartment(s);
+                                }} required placeholder="Department Name"/>
+                            </div>
+                        </div>
+
+                    </form>
 
                     <div className="d-flex justify-content-center">
                         <div className={"dropdown-width"} hidden={dropdownHidden}>
